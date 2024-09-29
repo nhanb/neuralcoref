@@ -41,7 +41,7 @@ import contextlib
 from distutils.command.build_ext import build_ext
 from distutils.sysconfig import get_python_inc
 import distutils.util
-from distutils import ccompiler, msvccompiler
+from distutils import ccompiler
 from setuptools import Extension, setup, find_packages
 
 def is_new_osx():
@@ -177,9 +177,9 @@ def setup_package():
             get_python_inc(plat_specific=True),
             os.path.join(root, 'include')]
 
-        if (ccompiler.new_compiler().compiler_type == 'msvc'
-            and msvccompiler.get_build_version() == 9):
-            include_dirs.append(os.path.join(root, 'include', 'msvc9'))
+        # if (ccompiler.new_compiler().compiler_type == 'msvc'
+        #     and msvccompiler.get_build_version() == 9):
+        #     include_dirs.append(os.path.join(root, 'include', 'msvc9'))
 
         ext_modules = []
         for mod_name in MOD_NAMES:
